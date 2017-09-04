@@ -97,7 +97,6 @@ git svn show-ignore -i origin/trunk > .gitignore
 git add .gitignore
 git commit -m 'Convert svn:ignore properties to .gitignore.'
 
-exit 0
 
 echo "Convert importet SVN-tags, i.e. single-node SVN-branches, to real GIT-tags"
 git for-each-ref --format='%(parent):%(refname:strip=4)' refs/remotes/origin/tags | 
@@ -106,7 +105,7 @@ do
   tag_name=${ref#*:}
   tag_ref=${ref%%:*}
   git tag -a -m "Converting SVN tags $ref (tag_ref)" $tag_name $tag_ref
-  git branch -r -d "origin/tags/$ref"
+  git branch -r -d "origin/tags/$tag_name"
 done
 
 

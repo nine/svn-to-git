@@ -30,6 +30,13 @@ rudolf.lingens = Rudolf Lingens <rudolf@lingens.net>
 
 ### svn-to-git.sh
 
+Basic usage for SVN standard layout:
+```
+./svn-to-git.sh -a /path/to/authors.list -u "http://path/to/svn/repository/svn_repository_name"
+```
+
+Advanced usage for custom SVN layout and local working directory:
+./svn-to-git.sh -a /path/to/authors.list -t "current" -T "releases" -b "branches" -u "http://path/to/svn/repository/svn_repository_name" -d test
 
 
 ## LICENSE
