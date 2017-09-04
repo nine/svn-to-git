@@ -109,10 +109,25 @@ do
   git branch -r -d "origin/tags/$ref"
 done
 
-echo "Result"
-git tag --list
+
+echo "Convert remote SVN-branches to local GIT-branches"
+git for-each-ref refs/remotes/origin --format="%(refname:short)" | 
+sed 's#origin/##' | grep -v '^tags' | 
+while read ref; 
+do 
+  git branch $ref origin/$ref; 
+done
 
 
+echo "Remove duplicated master-branch 'trunk'"
+git branch -d trunk 
+git branch -r -d origin/trunk 
+
+
+echo "Cleanup GIT-SVN config and directories"
+git config --remove-section svn
+git config --remove-section svn-remote.svn
+rm -rf .git/svn .git/{logs/,}refs/remotes/{git-,}svn/
 
 
 

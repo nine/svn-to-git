@@ -23,7 +23,7 @@ set -e
 show_help() {
 cat << EOF
 Usage: ${0##*/} [-hv] -c FILE -u URL 
-Update owncloud installations
+Extract authors-list from an existing SVN repository
 
     -h        display this help and exit
     -a FILE   path to authors file
